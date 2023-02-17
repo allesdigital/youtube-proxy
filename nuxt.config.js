@@ -1,3 +1,5 @@
+const ytvProxy = require("./ytv-proxy.js");
+
 export default {
   server: {
     host: "0.0.0.0",
@@ -30,7 +32,7 @@ export default {
       target: "https://i.ytimg.com",
       changeOrigin: true,
     },
-    "/ytv~*/": require("./ytv-proxy.js"),
+    [ytvProxy.prefix]: ytvProxy.handler,
   },
 
   serverMiddleware: [{ path: "/data", handler: "~/server-middleware/data.js" }],
